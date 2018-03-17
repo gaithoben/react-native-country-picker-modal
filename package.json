@@ -39,6 +39,7 @@
     "lodash": "4.12.0",
     "node-emoji": "1.8.1",
     "prop-types": "15.6.0",
+    "react-native-modal": "^5.3.0",
     "react-native-safe-area-view": "^0.7.0",
     "world-countries": "1.8.0"
   },
