@@ -16,7 +16,7 @@ import {
   TextInput,
   ListView,
   ScrollView,
-  Platform,
+  Platform
 } from 'react-native';
 
 import Fuse from 'fuse.js';
@@ -35,7 +35,7 @@ let isEmojiable = Platform.OS === 'ios';
 
 const FLAG_TYPES = {
   flat: 'flat',
-  emoji: 'emoji',
+  emoji: 'emoji'
 };
 
 const setCountries = flagType => {
@@ -56,8 +56,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 setCountries();
 
-export const getAllCountries = () =>
-  cca2List.map(cca2 => ({ ...countries[cca2], cca2 }));
+export const getAllCountries = () => cca2List.map(cca2 => ({ ...countries[cca2], cca2 }));
 
 export default class CountryPicker extends Component {
   static propTypes = {
@@ -81,7 +80,7 @@ export default class CountryPicker extends Component {
     animationType: PropTypes.oneOf(['slide', 'fade', 'none']),
     flagType: PropTypes.oneOf(Object.values(FLAG_TYPES)),
     hideAlphabetFilter: PropTypes.bool,
-    renderFilter: PropTypes.func,
+    renderFilter: PropTypes.func
   };
 
   static defaultProps = {
@@ -91,7 +90,7 @@ export default class CountryPicker extends Component {
     filterPlaceholder: 'Filter',
     autoFocusFilter: true,
     transparent: false,
-    animationType: 'none',
+    animationType: 'none'
   };
 
   static renderEmojiFlag(cca2, emojiStyle) {
@@ -106,10 +105,7 @@ export default class CountryPicker extends Component {
 
   static renderImageFlag(cca2, imageStyle) {
     return cca2 !== '' ? (
-      <Image
-        style={[styles.imgStyle, imageStyle]}
-        source={{ uri: countries[cca2].flag }}
-      />
+      <Image style={[styles.imgStyle, imageStyle]} source={{ uri: countries[cca2].flag }} />
     ) : null;
   }
 
@@ -154,15 +150,12 @@ export default class CountryPicker extends Component {
       cca2List: countryList,
       dataSource: ds.cloneWithRows(countryList),
       filter: '',
-      letters: this.getLetters(countryList),
+      letters: this.getLetters(countryList)
     };
 
     if (this.props.styles) {
       Object.keys(countryPickerStyles).forEach(key => {
-        styles[key] = StyleSheet.flatten([
-          countryPickerStyles[key],
-          this.props.styles[key],
-        ]);
+        styles[key] = StyleSheet.flatten([countryPickerStyles[key], this.props.styles[key]]);
       });
       styles = StyleSheet.create(styles);
     } else {
@@ -171,10 +164,7 @@ export default class CountryPicker extends Component {
 
     this.fuse = new Fuse(
       countryList.reduce(
-        (acc, item) => [
-          ...acc,
-          { id: item, name: this.getCountryName(countries[item]) },
-        ],
+        (acc, item) => [...acc, { id: item, name: this.getCountryName(countries[item]) }],
         []
       ),
       {
@@ -185,7 +175,7 @@ export default class CountryPicker extends Component {
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: ['name'],
-        id: 'id',
+        id: 'id'
       }
     );
   }
@@ -194,7 +184,7 @@ export default class CountryPicker extends Component {
     if (nextProps.countryList !== this.props.countryList) {
       this.setState({
         cca2List: nextProps.countryList,
-        dataSource: ds.cloneWithRows(nextProps.countryList),
+        dataSource: ds.cloneWithRows(nextProps.countryList)
       });
     }
   }
@@ -203,14 +193,14 @@ export default class CountryPicker extends Component {
     this.setState({
       modalVisible: false,
       filter: '',
-      dataSource: ds.cloneWithRows(this.state.cca2List),
+      dataSource: ds.cloneWithRows(this.state.cca2List)
     });
 
     this.props.onChange({
       cca2,
       ...countries[cca2],
       flag: undefined,
-      name: this.getCountryName(countries[cca2]),
+      name: this.getCountryName(countries[cca2])
     });
   }
 
@@ -218,7 +208,7 @@ export default class CountryPicker extends Component {
     this.setState({
       modalVisible: false,
       filter: '',
-      dataSource: ds.cloneWithRows(this.state.cca2List),
+      dataSource: ds.cloneWithRows(this.state.cca2List)
     });
     if (this.props.onClose) {
       this.props.onClose();
@@ -241,7 +231,7 @@ export default class CountryPicker extends Component {
           ...acc,
           [this.getCountryName(countries[val])
             .slice(0, 1)
-            .toUpperCase()]: '',
+            .toUpperCase()]: ''
         }),
         {}
       )
@@ -275,19 +265,18 @@ export default class CountryPicker extends Component {
 
     // scroll
     this._listView.scrollTo({
-      y: position,
+      y: position
     });
   }
 
   handleFilterChange = value => {
-    const filteredCountries =
-      value === '' ? this.state.cca2List : this.fuse.search(value);
+    const filteredCountries = value === '' ? this.state.cca2List : this.fuse.search(value);
 
     this._listView.scrollTo({ y: 0 });
 
     this.setState({
       filter: value,
-      dataSource: ds.cloneWithRows(filteredCountries),
+      dataSource: ds.cloneWithRows(filteredCountries)
     });
   };
 
@@ -305,11 +294,7 @@ export default class CountryPicker extends Component {
 
   renderLetters(letter, index) {
     return (
-      <TouchableOpacity
-        key={index}
-        onPress={() => this.scrollTo(letter)}
-        activeOpacity={0.6}
-      >
+      <TouchableOpacity key={index} onPress={() => this.scrollTo(letter)} activeOpacity={0.6}>
         <View style={styles.letter}>
           <Text style={styles.letterText} allowFontScaling={false}>
             {letter}
@@ -338,7 +323,7 @@ export default class CountryPicker extends Component {
       renderFilter,
       autoFocusFilter,
       filterPlaceholder,
-      filterPlaceholderTextColor,
+      filterPlaceholderTextColor
     } = this.props;
 
     const value = this.state.filter;
@@ -353,6 +338,7 @@ export default class CountryPicker extends Component {
         autoCorrect={false}
         placeholder={filterPlaceholder}
         placeholderTextColor={filterPlaceholderTextColor}
+        underlineColorAndroid="transparent"
         style={[styles.input, !this.props.closeable && styles.inputOnly]}
         onChangeText={onChange}
         value={value}
@@ -369,9 +355,7 @@ export default class CountryPicker extends Component {
           activeOpacity={0.7}
         >
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <View style={styles.touchFlag}>
-              {CountryPicker.renderFlag(this.props.cca2)}
-            </View>
+            <View style={styles.touchFlag}>{CountryPicker.renderFlag(this.props.cca2)}</View>
             {this.props.children ? this.props.children : null}
           </View>
         </TouchableOpacity>
@@ -382,25 +366,23 @@ export default class CountryPicker extends Component {
           onRequestClose={() => this.setState({ modalVisible: false })}
         >
           <SafeAreaView style={styles.modalContainer}>
-            <View style={styles.title}>
-              {this.props.closeable && (
-                <CloseButton
-                  image={this.props.closeButtonImage}
-                  styles={[styles.closeButton, styles.closeButtonImage]}
-                  onPress={() => this.onClose()}
-                />
-              )}
+            <View style={styles.modalHeader}>
+              <View style={styles.title}>
+                {this.props.closeable && (
+                  <CloseButton
+                    image={this.props.closeButtonImage}
+                    styles={[styles.closeButton, styles.closeButtonImage]}
+                    onPress={() => this.onClose()}
+                  />
+                )}
 
-              <View style={styles.titleText}>
-                <Text>
-                  {this.props.modalTitle
-                    ? this.props.modalTitle
-                    : 'Select your country'}
-                </Text>
+                <View style={styles.titleContainer}>
+                  <Text style={styles.titleText}>
+                    {this.props.modalTitle ? this.props.modalTitle : 'Select your country'}
+                  </Text>
+                </View>
               </View>
-            </View>
-            <View style={styles.header}>
-              {this.props.filterable && this.renderFilter()}
+              <View style={styles.header}>{this.props.filterable && this.renderFilter()}</View>
             </View>
             <KeyboardAvoidingView behavior="padding">
               <View style={styles.contentContainer}>
@@ -422,9 +404,7 @@ export default class CountryPicker extends Component {
                     keyboardShouldPersistTaps="always"
                   >
                     {this.state.filter === '' &&
-                      this.state.letters.map((letter, index) =>
-                        this.renderLetters(letter, index)
-                      )}
+                      this.state.letters.map((letter, index) => this.renderLetters(letter, index))}
                   </ScrollView>
                 )}
               </View>

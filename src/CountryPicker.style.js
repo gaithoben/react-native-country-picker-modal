@@ -3,7 +3,8 @@ import { getHeightPercent } from './ratio';
 
 export default StyleSheet.create({
   modalContainer: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#333'
   },
   contentContainer: {
     flex: 1,
@@ -11,13 +12,24 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: 'white'
   },
+  modalHeader: {
+    backgroundColor: '#333'
+  },
   header: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 5,
+    paddingBottom: 5,
+    backgroundColor: '#CCC'
   },
   input: {
-    height: 48,
-    width: '70%'
+    height: 35,
+    width: '80%',
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderRadius: 5,
+    backgroundColor: 'white'
   },
   inputOnly: {
     marginLeft: '15%'
@@ -100,12 +112,17 @@ export default StyleSheet.create({
   title: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#888'
+    backgroundColor: '#333'
   },
   titleText: {
+    color: 'yellow',
+    fontSize: 24
+  },
+  titleContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignContent: 'center'
+    alignContent: 'center',
+    marginLeft: -30
   }
 });
