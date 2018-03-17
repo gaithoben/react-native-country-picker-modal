@@ -4,12 +4,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SafeAreaView from 'react-native-safe-area-view';
-import Modal from 'react-native-modal';
+// import Modal from 'react-native-modal';
 
 import {
   StyleSheet,
   View,
   Image,
+  Modal,
   TouchableOpacity,
   Text,
   TextInput,
@@ -381,7 +382,7 @@ export default class CountryPicker extends Component {
           onRequestClose={() => this.setState({ modalVisible: false })}
         >
           <SafeAreaView style={styles.modalContainer}>
-            <View style={styles.header}>
+            <View style={styles.title}>
               {this.props.closeable && (
                 <CloseButton
                   image={this.props.closeButtonImage}
@@ -389,6 +390,16 @@ export default class CountryPicker extends Component {
                   onPress={() => this.onClose()}
                 />
               )}
+
+              <View style={styles.titleText}>
+                <Text>
+                  {this.props.modalTitle
+                    ? this.props.modalTitle
+                    : 'Select your country'}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.header}>
               {this.props.filterable && this.renderFilter()}
             </View>
             <KeyboardAvoidingView behavior="padding">

@@ -1,9 +1,8 @@
-import { StyleSheet, PixelRatio } from 'react-native'
-import { getHeightPercent } from './ratio'
+import { StyleSheet, PixelRatio } from 'react-native';
+import { getHeightPercent } from './ratio';
 
 export default StyleSheet.create({
   modalContainer: {
-    backgroundColor: 'white',
     flex: 1
   },
   contentContainer: {
@@ -94,8 +93,19 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   closeButtonImage: {
-    height: 24,
-    width: 24,
+    height: 35,
+    width: 35,
     resizeMode: 'contain'
+  },
+  title: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#888'
+  },
+  titleText: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center'
   }
-})
+});
