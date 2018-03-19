@@ -36,8 +36,7 @@ export default StyleSheet.create({
   },
   touchFlag: {
     alignItems: 'center',
-    justifyContent: 'center',
-    height: 19
+    justifyContent: 'center'
   },
   imgStyle: {
     resizeMode: 'contain',
@@ -64,10 +63,8 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   itemCountryFlag: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '7%',
-    width: '15%'
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   itemCountryName: {
     justifyContent: 'center',
