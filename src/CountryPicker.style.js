@@ -10,7 +10,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'white'
+    backgroundColor: '#FFF'
   },
   modalHeader: {
     backgroundColor: '#333'
@@ -60,7 +60,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     height: getHeightPercent(7),
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderBottomWidth: 1 / PixelRatio.get(),
+    borderBottomColor: '#ccc',
+    paddingLeft: 25
   },
   itemCountryFlag: {
     flexDirection: 'row',
@@ -69,9 +72,8 @@ export default StyleSheet.create({
   itemCountryName: {
     justifyContent: 'center',
     width: '70%',
-    borderBottomWidth: 2 / PixelRatio.get(),
-    borderBottomColor: '#ccc',
-    height: 20
+    height: 20,
+    paddingLeft: 20
   },
   countryName: {
     fontSize: getHeightPercent(2.2)
@@ -80,8 +82,6 @@ export default StyleSheet.create({
     flex: 1
   },
   letters: {
-    marginRight: 10,
-    backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center'
   },
