@@ -14,7 +14,7 @@ import {
   TouchableOpacity,
   Text,
   TextInput,
-  ListView,
+  FlatList,
   ScrollView,
   Platform,
 } from 'react-native';
@@ -408,7 +408,7 @@ export default class CountryPicker extends Component {
             </View>
             <KeyboardAvoidingView behavior="padding">
               <View style={styles.contentContainer}>
-                <ListView
+                <FlatList
                   keyboardShouldPersistTaps="always"
                   enableEmptySections
                   ref={listView => (this._listView = listView)}
